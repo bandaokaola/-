@@ -1,19 +1,21 @@
 package com.quark.rest.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.quark.common.base.BaseController;
 import com.quark.common.dto.QuarkResult;
 import com.quark.common.entity.Reply;
 import com.quark.common.entity.User;
 import com.quark.rest.service.ReplyService;
 import com.quark.rest.service.UserService;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @Author LHR
@@ -23,9 +25,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/reply")
 public class ReplyController extends BaseController{
-
-    @Autowired
-    private WebSocketController webSocketController;
 
     @Autowired
     private UserService userService;

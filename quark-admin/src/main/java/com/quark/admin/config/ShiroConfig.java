@@ -1,9 +1,9 @@
 package com.quark.admin.config;
 
-import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
-import com.quark.admin.service.PermissionService;
-import com.quark.admin.shiro.MyShiroRealm;
-import com.quark.common.entity.Permission;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
@@ -19,9 +19,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import com.quark.admin.service.PermissionService;
+import com.quark.admin.shiro.MyShiroRealm;
+import com.quark.common.entity.Permission;
+
+import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 
 /**
  * Created by lhr on 17-8-1.
@@ -156,9 +158,9 @@ public class ShiroConfig {
     public RedisManager redisManager() {
         RedisManager redisManager = new RedisManager();
         redisManager.setHost(host);
-        redisManager.setPort(port);
+//        redisManager.setPort(port);
 //        redisManager.setPassword(password);
-        redisManager.setExpire(1800);// 配置缓存过期时间
+//        redisManager.setExpire(1800);// 配置缓存过期时间
         redisManager.setTimeout(timeout);
         return redisManager;
     }

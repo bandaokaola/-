@@ -14,7 +14,7 @@ import java.io.Serializable;
 public class Label implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Integer id;
 
     //标签名称

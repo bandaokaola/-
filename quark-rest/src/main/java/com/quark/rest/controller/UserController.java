@@ -1,5 +1,17 @@
 package com.quark.rest.controller;
 
+import java.util.HashMap;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.DigestUtils;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.quark.common.base.BaseController;
 import com.quark.common.dto.QuarkResult;
 import com.quark.common.entity.Posts;
@@ -7,16 +19,11 @@ import com.quark.common.entity.User;
 import com.quark.rest.service.NotificationService;
 import com.quark.rest.service.PostsService;
 import com.quark.rest.service.UserService;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.DigestUtils;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
-import java.util.List;
 
 /**
  * @Author LHR
@@ -126,7 +133,12 @@ public class UserController extends BaseController {
         QuarkResult result = restProcessor(() -> {
             if (!userService.checkUserName(username)) return QuarkResult.warn("用户名重复！");
             if (sex != 0 && sex != 1) return QuarkResult.warn("性别输入错误！");
-            userService.updateUser(token, username, signature, sex);
+
+            String thisSignature = signature;
+            if (thisSignature == null || "".contentEquals(thisSignature)) {
+                thisSignature = "这家伙很懒！签名什么也没有！！！";
+            }
+            userService.updateUser(token, username, thisSignature, sex);
             return QuarkResult.ok();
         });
 

@@ -1,10 +1,10 @@
 package com.quark.rest.service;
 
-import com.quark.common.base.BaseService;
-import com.quark.common.entity.User;
-
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+
+import com.quark.common.base.BaseService;
+import com.quark.common.entity.User;
 
 /**
  * @Author LHR
@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public interface UserService extends BaseService<User> {
 
-//    Set<Integer> loginId = ConcurrentHashMap.<Integer>newKeySet();
+    Set<Integer> loginId = ConcurrentHashMap.<Integer>newKeySet();
 
     /**
      * 验证用户名是否可以使用

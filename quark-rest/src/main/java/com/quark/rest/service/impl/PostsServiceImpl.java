@@ -1,14 +1,15 @@
 package com.quark.rest.service.impl;
 
-import com.quark.common.base.BaseServiceImpl;
-import com.quark.common.dao.LabelDao;
-import com.quark.common.dao.PostsDao;
-import com.quark.common.dao.UserDao;
-import com.quark.common.entity.Label;
-import com.quark.common.entity.Posts;
-import com.quark.common.entity.User;
-import com.quark.common.exception.ServiceProcessException;
-import com.quark.rest.service.PostsService;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Path;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,10 +19,15 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.criteria.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import com.quark.common.base.BaseServiceImpl;
+import com.quark.common.dao.LabelDao;
+import com.quark.common.dao.PostsDao;
+import com.quark.common.dao.UserDao;
+import com.quark.common.entity.Label;
+import com.quark.common.entity.Posts;
+import com.quark.common.entity.User;
+import com.quark.common.exception.ServiceProcessException;
+import com.quark.rest.service.PostsService;
 
 /**
  * @Author LHR
@@ -40,7 +46,7 @@ public class PostsServiceImpl extends BaseServiceImpl<PostsDao, Posts> implement
     @Override
     public void savePosts(Posts posts, Integer labelId, User user) {
         try {
-            Label label = labelDao.findOne(labelId);
+            Label label = labelDao.findById(labelId).get();
 
             if (label == null) throw new ServiceProcessException("标签不存在!");
             //标签的帖子数量+1
@@ -68,8 +74,8 @@ public class PostsServiceImpl extends BaseServiceImpl<PostsDao, Posts> implement
         orders.add(new Sort.Order(Sort.Direction.DESC, "id"));
 
 
-        Sort sort = new Sort(orders);
-        PageRequest pageable = new PageRequest(pageNo, length, sort);
+        Sort sort = Sort.by(orders);
+        PageRequest pageable = PageRequest.of(pageNo, length, sort);
 
         Specification<Posts> specification = new Specification<Posts>() {
             @Override
@@ -93,8 +99,8 @@ public class PostsServiceImpl extends BaseServiceImpl<PostsDao, Posts> implement
 
     @Override
     public List<Posts> getPostsByUser(User user) {
-        Sort sort = new Sort(new Sort.Order(Sort.Direction.DESC, "initTime"));
-        Pageable pageable = new PageRequest(0, 10, sort);
+        Sort sort = Sort.by(new Sort.Order(Sort.Direction.DESC, "initTime"));
+        Pageable pageable = PageRequest.of(0, 10, sort);
         Page<Posts> page = repository.findByUser(user, pageable);
         return page.getContent();
     }
@@ -104,8 +110,8 @@ public class PostsServiceImpl extends BaseServiceImpl<PostsDao, Posts> implement
         List<Sort.Order> orders = new ArrayList<>();
         orders.add(new Sort.Order(Sort.Direction.DESC, "top"));
         orders.add(new Sort.Order(Sort.Direction.DESC, "id"));
-        Sort sort = new Sort(orders);
-        Pageable pageable = new PageRequest(pageNo, lenght, sort);
+        Sort sort = Sort.by(orders);
+        Pageable pageable = PageRequest.of(pageNo, lenght, sort);
         Page<Posts> postss = repository.findByLabel(label, pageable);
         return postss;
     }

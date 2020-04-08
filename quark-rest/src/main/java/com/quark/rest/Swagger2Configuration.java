@@ -2,6 +2,7 @@ package com.quark.rest;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -30,7 +31,6 @@ public class Swagger2Configuration {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("Quark BBS 接口文档")
-                .contact("LHR")
                 .version("1.0")
                 .build();
     }

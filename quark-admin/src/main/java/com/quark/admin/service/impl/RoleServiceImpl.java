@@ -1,5 +1,18 @@
 package com.quark.admin.service.impl;
 
+import static java.util.stream.Collectors.*;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Stream;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.quark.admin.service.AdminUserService;
 import com.quark.admin.service.PermissionService;
 import com.quark.admin.service.RoleService;
@@ -8,18 +21,6 @@ import com.quark.common.dao.RoleDao;
 import com.quark.common.dto.QuarkResult;
 import com.quark.common.entity.Permission;
 import com.quark.common.entity.Role;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Stream;
-
-import static java.util.stream.Collectors.toSet;
 
 /**
  * Created by lhr on 17-8-1.
@@ -47,7 +48,7 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleDao, Role> implements R
 
     @Override
     public Page<Role> findByPage(int pageNo, int length) {
-        PageRequest pageRequest = new PageRequest(pageNo, length);
+        PageRequest pageRequest = PageRequest.of(pageNo, length);
         Page<Role> page = repository.findAll(pageRequest);
         return page;
     }

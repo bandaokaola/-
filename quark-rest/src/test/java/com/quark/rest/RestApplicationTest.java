@@ -1,11 +1,7 @@
 package com.quark.rest;
 
-import com.quark.common.dao.AdminUserDao;
-import com.quark.common.dao.PostsDao;
-import com.quark.rest.service.PostsService;
-import com.quark.rest.service.RedisService;
-import com.quark.rest.service.ReplyService;
-import com.quark.rest.service.UserService;
+import javax.sql.DataSource;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +11,12 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.sql.DataSource;
+import com.quark.common.dao.AdminUserDao;
+import com.quark.common.dao.PostsDao;
+import com.quark.rest.service.PostsService;
+import com.quark.rest.service.RedisService;
+import com.quark.rest.service.ReplyService;
+import com.quark.rest.service.UserService;
 
 /**
  * Created by lhr on 17-7-31.
@@ -28,7 +29,7 @@ import javax.sql.DataSource;
 public class RestApplicationTest {
 
     @Autowired
-    RedisTemplate redisTemplate;
+    RedisTemplate<?, ?> redisTemplate;
 
     @Autowired
     UserService userService;

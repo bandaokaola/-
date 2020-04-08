@@ -1,5 +1,21 @@
 package com.quark.rest.service.impl;
 
+import java.util.Date;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Path;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.quark.common.base.BaseServiceImpl;
 import com.quark.common.dao.PostsDao;
 import com.quark.common.dao.ReplyDao;
@@ -11,16 +27,6 @@ import com.quark.common.exception.ServiceProcessException;
 import com.quark.rest.service.NotificationService;
 import com.quark.rest.service.ReplyService;
 import com.quark.rest.service.WebSocketService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.domain.Specification;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import javax.persistence.criteria.*;
-import java.util.Date;
 
 /**
  * @Author LHR
@@ -41,8 +47,8 @@ public class ReplyServiceImpl extends BaseServiceImpl<ReplyDao, Reply> implement
     @Override
     public Page<Reply> getReplyByPage(Integer postsId, int pageNo, int length) {
         Sort.Order order = new Sort.Order(Sort.Direction.ASC, "id");
-        Sort sort = new Sort(order);
-        PageRequest pageable = new PageRequest(pageNo, length, sort);
+        Sort sort = Sort.by(order);
+        PageRequest pageable = PageRequest.of(pageNo, length, sort);
 
         Specification<Reply> specification = new Specification<Reply>() {
 
@@ -62,7 +68,7 @@ public class ReplyServiceImpl extends BaseServiceImpl<ReplyDao, Reply> implement
     @Override
     public void saveReply(Reply reply, Integer postsId, User user) {
         try {
-            Posts posts = postsDao.findOne(postsId);
+            Posts posts = postsDao.findById(postsId).get();
 
             if (posts == null) throw new ServiceProcessException("帖子不存在!");
 

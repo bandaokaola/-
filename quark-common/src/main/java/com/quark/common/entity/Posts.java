@@ -18,7 +18,7 @@ import java.util.Date;
 public class Posts implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Integer id;
 
     //与标签的关系

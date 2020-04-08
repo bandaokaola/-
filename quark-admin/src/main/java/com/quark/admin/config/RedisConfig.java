@@ -1,11 +1,11 @@
 package com.quark.admin.config;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
@@ -32,8 +32,6 @@ public class RedisConfig extends CachingConfigurerSupport {
 
     @Bean
     public JedisPool redisPoolFactory() {
-        Logger.getLogger(getClass()).info("JedisPool注入成功！！");
-        Logger.getLogger(getClass()).info("redis地址：" + host + ":" + port);
         JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
         jedisPoolConfig.setMaxIdle(maxIdle);
         jedisPoolConfig.setMaxWaitMillis(maxWaitMillis);

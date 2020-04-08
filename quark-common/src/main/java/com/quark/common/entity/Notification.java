@@ -17,7 +17,7 @@ import java.util.Date;
 public class Notification {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Integer id;
 
     //通知是否已读

@@ -1,12 +1,19 @@
 package com.quark.admin.service.impl;
 
-import com.quark.admin.service.AdminUserService;
-import com.quark.admin.service.RoleService;
-import com.quark.admin.utils.PasswordHelper;
-import com.quark.common.base.BaseServiceImpl;
-import com.quark.common.dao.AdminUserDao;
-import com.quark.common.entity.AdminUser;
-import com.quark.common.entity.Role;
+import static java.util.stream.Collectors.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Path;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,10 +21,13 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.criteria.*;
-import java.util.*;
-
-import static java.util.stream.Collectors.toSet;
+import com.quark.admin.service.AdminUserService;
+import com.quark.admin.service.RoleService;
+import com.quark.admin.utils.PasswordHelper;
+import com.quark.common.base.BaseServiceImpl;
+import com.quark.common.dao.AdminUserDao;
+import com.quark.common.entity.AdminUser;
+import com.quark.common.entity.Role;
 
 /**
  * Created by lhr on 17-8-1.
@@ -36,7 +46,7 @@ public class AdminUserServiceImpl extends BaseServiceImpl<AdminUserDao, AdminUse
 
     @Override
     public Page<AdminUser> findByPage(AdminUser adminUser, int pageNo, int length) {
-        PageRequest pageable = new PageRequest(pageNo, length);
+        PageRequest pageable = PageRequest.of(pageNo, length);
 
         Specification<AdminUser> specification = new Specification<AdminUser>() {
 

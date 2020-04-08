@@ -1,20 +1,19 @@
 package com.quark.rest.service.impl;
 
+import java.util.Date;
+import java.util.UUID;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
+
 import com.quark.common.base.BaseServiceImpl;
 import com.quark.common.dao.UserDao;
 import com.quark.common.entity.User;
 import com.quark.common.exception.ServiceProcessException;
 import com.quark.rest.service.RedisService;
 import com.quark.rest.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-import org.springframework.util.DigestUtils;
-
-import java.util.Date;
-import java.util.Set;
-import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @Author LHR
@@ -94,7 +93,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserDao, User> implements U
     public void updateUser(String token, String username, String signature, Integer sex) {
         User cacheuser = redisService.getString(REDIS_USER_KEY + token);
         if (cacheuser == null) throw new ServiceProcessException("session过期,请重新登录");
-        User user = repository.findOne(cacheuser.getId());
+        User user = repository.findById(cacheuser.getId()).get();
         user.setUsername(username);
         user.setSex(sex);
         user.setSignature(signature);
@@ -107,7 +106,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserDao, User> implements U
         User cacheuser = redisService.getString(REDIS_USER_KEY + token);
         if (cacheuser == null)
             throw new ServiceProcessException("用户Session过期，请重新登录");
-        User user = repository.findOne(cacheuser.getId());
+        User user = repository.findById(cacheuser.getId()).get();
         user.setIcon(icon);
         repository.save(user);
         redisService.cacheString(REDIS_USER_KEY + token, user, REDIS_USER_TIME);
@@ -119,7 +118,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserDao, User> implements U
         User cacheuser = redisService.getString(REDIS_USER_KEY + token);
         if (cacheuser == null)
             throw new ServiceProcessException("用户Session过期，请重新登录");
-        User user = repository.findOne(cacheuser.getId());
+        User user = repository.findById(cacheuser.getId()).get();
         if(!user.getPassword().equals(DigestUtils.md5DigestAsHex(oldpsd.getBytes())))
             throw new ServiceProcessException("原始密码错误,请重新输入");
         user.setPassword(DigestUtils.md5DigestAsHex(newpsd.getBytes()));

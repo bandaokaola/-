@@ -1,13 +1,14 @@
 package com.quark.chat.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
 import com.quark.chat.service.ChatService;
 import com.quark.chat.service.RedisService;
 import com.quark.common.base.BaseServiceImpl;
 import com.quark.common.dao.UserDao;
 import com.quark.common.entity.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
 
 /**
  * @Author : ChinaLHR
@@ -32,7 +33,7 @@ public class ChatServiceImpl extends BaseServiceImpl<UserDao,User> implements Ch
 
     @Override
     public boolean authUser(Integer id) {
-        User user = repository.findOne(id);
+        User user = repository.findById(id).get();
         return user.getEnable() == 1;
     }
 

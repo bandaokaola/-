@@ -1,20 +1,26 @@
 package com.quark.admin.service.impl;
 
-import com.quark.admin.service.PostsService;
-import com.quark.common.base.BaseServiceImpl;
-import com.quark.common.dao.PostsDao;
-import com.quark.common.entity.Posts;
-import com.quark.common.entity.User;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Path;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.criteria.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import com.quark.admin.service.PostsService;
+import com.quark.common.base.BaseServiceImpl;
+import com.quark.common.dao.PostsDao;
+import com.quark.common.entity.Posts;
+import com.quark.common.entity.User;
 
 /**
  * @Author LHR
@@ -26,9 +32,9 @@ public class PostsServiceImpl extends BaseServiceImpl<PostsDao,Posts> implements
 
     @Override
     public Page<Posts> findByPage(Posts posts, int pageNo, int length) {
-        PageRequest pageable = new PageRequest(pageNo, length);
+        PageRequest pageable = PageRequest.of(pageNo, length);
         Sort.Order order = new Sort.Order(Sort.Direction.ASC, "id");
-        Sort sort = new Sort(order);
+        Sort sort = Sort.by(order);
 
         Specification<Posts> specification = new Specification<Posts>() {
 

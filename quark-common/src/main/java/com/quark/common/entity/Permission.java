@@ -16,7 +16,7 @@ import java.util.Set;
 public class Permission implements Serializable{
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Integer id;
 
     private String name;

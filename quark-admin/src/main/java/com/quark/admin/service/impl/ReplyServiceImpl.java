@@ -1,18 +1,24 @@
 package com.quark.admin.service.impl;
 
+import java.util.ArrayList;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Path;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Service;
+
 import com.quark.admin.service.ReplyService;
 import com.quark.common.base.BaseServiceImpl;
 import com.quark.common.dao.ReplyDao;
 import com.quark.common.entity.Posts;
 import com.quark.common.entity.Reply;
 import com.quark.common.entity.User;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.jpa.domain.Specification;
-import org.springframework.stereotype.Service;
-
-import javax.persistence.criteria.*;
-import java.util.ArrayList;
 
 /**
  * @Author LHR
@@ -23,7 +29,7 @@ public class ReplyServiceImpl extends BaseServiceImpl<ReplyDao,Reply> implements
 
     @Override
     public Page<Reply> findByPage(Reply reply, int pageNo, int length) {
-        PageRequest pageable = new PageRequest(pageNo, length);
+        PageRequest pageable = PageRequest.of(pageNo, length);
 
         Specification<Posts> specification = new Specification<Posts>(){
 

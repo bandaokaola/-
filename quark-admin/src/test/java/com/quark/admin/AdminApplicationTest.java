@@ -1,8 +1,7 @@
 package com.quark.admin;
 
-import com.quark.admin.service.*;
-import com.quark.common.dao.AdminUserDao;
-import com.quark.common.entity.Posts;
+import javax.sql.DataSource;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.sql.DataSource;
+import com.quark.admin.service.AdminUserService;
+import com.quark.admin.service.PermissionService;
+import com.quark.admin.service.PostsService;
+import com.quark.admin.service.RoleService;
+import com.quark.admin.service.UserService;
+import com.quark.common.dao.AdminUserDao;
+import com.quark.common.entity.Posts;
 
 /**
  * Created by lhr on 17-7-31.
@@ -46,7 +51,7 @@ public class AdminApplicationTest {
 
     @Test
     public void testDataSource() {
-       System.out.println(dao.findOne(3));
+       System.out.println(dao.findById(3));
 
     }
 

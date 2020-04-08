@@ -1,8 +1,6 @@
 package com.quark.porent.entity;
 
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.Serializable;
 
 /**
@@ -12,8 +10,6 @@ import java.io.Serializable;
  * Create By 2017/8/11
  */
 public class QuarkResult implements Serializable {
-    // 定义jackson对象
-    private static final ObjectMapper MAPPER = new ObjectMapper();
 
     /**
      * 响应业务状态

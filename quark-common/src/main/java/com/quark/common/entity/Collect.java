@@ -18,7 +18,7 @@ import java.util.Date;
 public class Collect implements Serializable{
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Integer id;
 
     //与帖子的关联关系：立即加载

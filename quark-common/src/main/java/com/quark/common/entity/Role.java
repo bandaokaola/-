@@ -16,7 +16,7 @@ import java.util.Set;
 public class Role implements Serializable{
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Integer id;
 
     @Column(unique = true,nullable = false)

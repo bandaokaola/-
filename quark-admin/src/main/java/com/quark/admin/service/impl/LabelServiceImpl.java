@@ -1,12 +1,13 @@
 package com.quark.admin.service.impl;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
+
 import com.quark.admin.service.LabelService;
 import com.quark.common.base.BaseServiceImpl;
 import com.quark.common.dao.LabelDao;
 import com.quark.common.entity.Label;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.stereotype.Service;
 
 /**
  * @Author LHR
@@ -18,7 +19,7 @@ public class LabelServiceImpl extends BaseServiceImpl<LabelDao,Label> implements
 
     @Override
     public Page<Label> findByPage(int pageNo, int length) {
-        PageRequest pageRequest = new PageRequest(pageNo, length);
+        PageRequest pageRequest = PageRequest.of(pageNo, length);
         Page<Label> page = repository.findAll(pageRequest);
         return page;
     }

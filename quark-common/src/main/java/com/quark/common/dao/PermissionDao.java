@@ -1,13 +1,13 @@
 package com.quark.common.dao;
 
-import com.quark.common.entity.Permission;
+import java.util.List;
+
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import com.quark.common.entity.Permission;
 
 /**
  * Created by lhr on 17-7-31.
@@ -17,7 +17,7 @@ import java.util.List;
 public interface PermissionDao extends JpaRepository<Permission,Integer> {
 
 
-    Permission findOne(Integer integer);
+    Permission getOne(Integer integer);
 
     @Cacheable
     List<Permission> findAll();

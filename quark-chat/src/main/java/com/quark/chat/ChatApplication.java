@@ -1,20 +1,19 @@
 package com.quark.chat;
 
-import com.quark.chat.server.QuarkChatServer;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 
-import javax.annotation.PreDestroy;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
+import com.quark.chat.server.QuarkChatServer;
 
 /**
  * @Author : ChinaLHR

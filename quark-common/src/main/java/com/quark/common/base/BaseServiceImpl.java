@@ -1,9 +1,9 @@
 package com.quark.common.base;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.List;
 
 /**
  * Created by lhr on 17-8-1.
@@ -15,7 +15,7 @@ public class BaseServiceImpl<E extends JpaRepository,T> implements BaseService<T
 
     @Override
     public T findOne(int key) {
-        return (T) repository.findOne(key);
+        return (T) repository.findById(key).get();
     }
 
     @Override
@@ -40,12 +40,12 @@ public class BaseServiceImpl<E extends JpaRepository,T> implements BaseService<T
 
     @Override
     public List<T> findAll(Iterable<Integer> iterable) {
-        return repository.findAll(iterable);
+        return repository.findAllById(iterable);
     }
 
     @Override
     public List<T> save(Iterable<T> iterable) {
-        return repository.save(iterable);
+        return repository.saveAll(iterable);
     }
 
 
