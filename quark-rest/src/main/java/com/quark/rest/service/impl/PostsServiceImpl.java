@@ -22,7 +22,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.quark.common.base.BaseServiceImpl;
 import com.quark.common.dao.LabelDao;
 import com.quark.common.dao.PostsDao;
-import com.quark.common.dao.UserDao;
 import com.quark.common.entity.Label;
 import com.quark.common.entity.Posts;
 import com.quark.common.entity.User;
@@ -38,9 +37,6 @@ public class PostsServiceImpl extends BaseServiceImpl<PostsDao, Posts> implement
 
     @Autowired
     private LabelDao labelDao;
-
-    @Autowired
-    private UserDao userDao;
 
     @Transactional
     @Override
@@ -92,6 +88,7 @@ public class PostsServiceImpl extends BaseServiceImpl<PostsDao, Posts> implement
                 return predicate;
             }
         };
+
         Page<Posts> page = repository.findAll(specification, pageable);
 
         return page;

@@ -59,6 +59,7 @@ public class ReplyServiceImpl extends BaseServiceImpl<ReplyDao, Reply> implement
                 return predicate;
             }
         };
+
         Page<Reply> page = repository.findAll(specification, pageable);
         return page;
     }

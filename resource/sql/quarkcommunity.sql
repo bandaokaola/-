@@ -91,8 +91,9 @@ CREATE TABLE `quark_collect` (
 DROP TABLE IF EXISTS `quark_label`;
 CREATE TABLE `quark_label` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `details` varchar(255) DEFAULT NULL,
   `name` varchar(255) NOT NULL,
+  `details` varchar(255) DEFAULT NULL,
+  `type` int(11) DEFAULT NULL,
   `posts_count` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_6vml4ba2itmaor84892v92b1f` (`name`)
@@ -101,15 +102,15 @@ CREATE TABLE `quark_label` (
 -- ----------------------------
 -- Records of quark_label
 -- ----------------------------
-INSERT INTO `quark_label` VALUES ('1', '北边的霸帝国',   '霸帝国', '0');
-INSERT INTO `quark_label` VALUES ('2', '东边的夏帝国',   '夏帝国', '0');
-INSERT INTO `quark_label` VALUES ('3', '西边的华帝国',   '华帝国', '0');
-INSERT INTO `quark_label` VALUES ('4', '又西边的勇帝国', '勇帝国', '0');
-INSERT INTO `quark_label` VALUES ('5', '霸城故事',       '霸城',   '0');
-INSERT INTO `quark_label` VALUES ('6', '夏城故事',       '夏城',   '0');
-INSERT INTO `quark_label` VALUES ('7', '华城故事',       '华城',   '0');
-INSERT INTO `quark_label` VALUES ('8', '勇城故事',       '勇城',   '0');
-INSERT INTO `quark_label` VALUES ('9', '申城故事',       '申城',   '0');
+INSERT INTO `quark_label` VALUES ('1', '霸帝国', '北边的霸帝国',   '111', '0');
+INSERT INTO `quark_label` VALUES ('2', '夏帝国', '东边的夏帝国',   '222', '0');
+INSERT INTO `quark_label` VALUES ('3', '华帝国', '西边的华帝国',   '333', '0');
+INSERT INTO `quark_label` VALUES ('4', '勇帝国', '又西边的勇帝国', '444', '0');
+INSERT INTO `quark_label` VALUES ('5', '霸城',   '霸城故事',       '555', '0');
+INSERT INTO `quark_label` VALUES ('6', '夏城',   '夏城故事',       '666', '0');
+INSERT INTO `quark_label` VALUES ('7', '华城',   '华城故事',       '777', '0');
+INSERT INTO `quark_label` VALUES ('8', '勇城',   '勇城故事',       '888', '0');
+INSERT INTO `quark_label` VALUES ('9', '申城',   '申城故事',       '999', '0');
 
 -- ----------------------------
 -- Table structure for quark_notification

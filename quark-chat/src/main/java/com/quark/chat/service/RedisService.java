@@ -1,12 +1,12 @@
 package com.quark.chat.service;
 
+import java.util.concurrent.TimeUnit;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.SetOperations;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
-
-import java.util.concurrent.TimeUnit;
 
 /**
  * @Author LHR
@@ -65,7 +65,6 @@ public class RedisService<T> {
      * @return
      */
     public boolean stringHasKey(String key){
-        ValueOperations<String, T> operations = redisTemplate.opsForValue();
         return redisTemplate.hasKey(key);
     }
 

@@ -1,7 +1,13 @@
 package com.quark.common.entity;
 
-import javax.persistence.*;
 import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * @Author LHR
@@ -14,7 +20,7 @@ import java.io.Serializable;
 public class Label implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     //标签名称
@@ -27,6 +33,8 @@ public class Label implements Serializable {
 
     //详情
     private String details;
+
+    private Integer type;
 
     public Integer getId() {
         return id;
@@ -58,5 +66,13 @@ public class Label implements Serializable {
 
     public void setDetails(String details) {
         this.details = details;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 }

@@ -12,7 +12,6 @@ import javax.persistence.criteria.Root;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -33,8 +32,6 @@ public class PostsServiceImpl extends BaseServiceImpl<PostsDao,Posts> implements
     @Override
     public Page<Posts> findByPage(Posts posts, int pageNo, int length) {
         PageRequest pageable = PageRequest.of(pageNo, length);
-        Sort.Order order = new Sort.Order(Sort.Direction.ASC, "id");
-        Sort sort = Sort.by(order);
 
         Specification<Posts> specification = new Specification<Posts>() {
 

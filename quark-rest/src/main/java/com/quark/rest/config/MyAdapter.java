@@ -3,14 +3,14 @@ package com.quark.rest.config;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * @Author LHR
  * Create By 2017/8/30
  */
 @Configuration
-public class MyAdapter extends WebMvcConfigurerAdapter {
+public class MyAdapter implements WebMvcConfigurer {
 
 
     /**
@@ -21,6 +21,5 @@ public class MyAdapter extends WebMvcConfigurerAdapter {
     public void addViewControllers( ViewControllerRegistry registry ) {
         registry.addViewController( "" ).setViewName( "redirect:/swagger-ui.html" );
         registry.setOrder( Ordered.HIGHEST_PRECEDENCE );
-        super.addViewControllers( registry );
     }
 }

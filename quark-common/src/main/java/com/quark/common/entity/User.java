@@ -38,8 +38,7 @@ public class User implements Serializable {
     @JsonIgnore
     private String password;
 
-//    private String icon ="http://127.0.0.1/images/upload/default.png";
-    private String icon ="D:\\home\\images\\system\\china.png";
+    private String icon ="http://127.0.0.1:8088/images/upload/default.png";
 
     private String signature;
 

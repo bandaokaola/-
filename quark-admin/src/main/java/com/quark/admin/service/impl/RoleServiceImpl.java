@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.quark.admin.service.AdminUserService;
-import com.quark.admin.service.PermissionService;
 import com.quark.admin.service.RoleService;
 import com.quark.common.base.BaseServiceImpl;
 import com.quark.common.dao.RoleDao;
@@ -31,9 +30,6 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleDao, Role> implements R
 
     @Autowired
     private AdminUserService userService;
-
-    @Autowired
-    private PermissionService permissionService;
 
     @Override
     public QuarkResult findRolesAndSelected(Integer id) {

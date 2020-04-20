@@ -1,19 +1,19 @@
 package com.quark.admin.shiro;
 
-import com.quark.admin.service.PermissionService;
-import com.quark.common.entity.Permission;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.filter.mgt.DefaultFilterChainManager;
 import org.apache.shiro.web.filter.mgt.PathMatchingFilterChainResolver;
 import org.apache.shiro.web.servlet.AbstractShiroFilter;
-import org.crazycake.shiro.RedisSessionDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import com.quark.admin.service.PermissionService;
+import com.quark.common.entity.Permission;
 
 @Service
 public class ShiroService {
@@ -22,9 +22,6 @@ public class ShiroService {
     private ShiroFilterFactoryBean shiroFilterFactoryBean;
     @Autowired
     private PermissionService permissionService;
-    @Autowired
-    private RedisSessionDAO redisSessionDAO;
-
 
     /**
      * 初始化权限

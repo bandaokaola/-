@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -25,8 +23,6 @@ import com.quark.chat.server.QuarkChatServer;
 public class ChatApplication  implements CommandLineRunner {
     @Autowired
     private QuarkChatServer server;
-
-    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     public static void main(String[] args) throws IOException {
         Properties properties = new Properties();

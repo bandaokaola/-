@@ -7,9 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.quark.chat.handler.UserAuthHandler;
-import com.quark.chat.service.ChannelManager;
-import com.quark.chat.service.ChatService;
 import com.quark.common.dao.UserDao;
 import com.quark.common.entity.User;
 
@@ -26,14 +23,15 @@ public class ChatApplicationTest {
     @Autowired
     private UserDao userDao;
 
-    @Autowired
-    private ChatService chatService;
+//    @Autowired
+//    private ChatService chatService;
+//
+//    @Autowired
+//    private ChannelManager manager;
+//
+//    @Autowired
+//    private UserAuthHandler handler;
 
-    @Autowired
-    private ChannelManager manager;
-
-    @Autowired
-    private UserAuthHandler handler;
     @Test
     public void testUserDao() {
         User user = userDao.findById(2).get();
@@ -42,7 +40,7 @@ public class ChatApplicationTest {
 
     @Test
     public void testNumber() {
-        byte a = 0x10;
+       byte a = 0x10;
        System.out.println(a);
     }
 
