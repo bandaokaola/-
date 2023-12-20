@@ -19,7 +19,7 @@
 	使用LayUI，jQuery渲染页面渲染页面
 	5、quark-chat:采用Netty+WebSocket协议搭建的聊天室服务，通过JSON传递数据，Ping-Pong心跳检测机制保证链路可用性。
 	6、使用Redis进行了热点缓存，Ehcache进行数据库的二级缓存提高应用的效率
- ![image](https://raw.githubusercontent.com/ChinaLHR/申国论坛/master/resource/images/systemv2.png)  <br>
+ ![image](https://raw.githubusercontent.com/bandaokaola/bbs/master/resource/images/systemv2.png)  <br>
 	
 
 ## 运行环境
@@ -47,12 +47,12 @@
 
 ## swagger2生成的RESTFul API文档
 (默认在http://loclhost:8081下)
- ![image](https://raw.githubusercontent.com/ChinaLHR/申国论坛/master/resource/images/quark_rest_1.JPG)  <br>
- ![image](https://raw.githubusercontent.com/ChinaLHR/申国论坛/master/resource/images/quark_rest_2.JPG)  <br>
+ ![image](https://raw.githubusercontent.com/bandaokaola/bbs/master/resource/images/quark_rest_1.JPG)  <br>
+ ![image](https://raw.githubusercontent.com/bandaokaola/bbs/master/resource/images/quark_rest_2.JPG)  <br>
 
 ## WebSocket聊天室
 ### 应用层协议
-![image](https://raw.githubusercontent.com/ChinaLHR/申国论坛/master/resource/images/quark_chat_protocol.JPG)
+![image](https://raw.githubusercontent.com/bandaokaola/bbs/master/resource/images/quark_chat_protocol.JPG)
  
 		PING_CODE = 0x01;//Ping消息(client)
 		PONG_CODE = 0x02;//Pong消息(server)
@@ -65,7 +65,7 @@
 		SYS_ERRORMESSAGE_CODE = 0x09;//系统错误消息
 
 ### 通信模型
-![image](https://raw.githubusercontent.com/ChinaLHR/申国论坛/master/resource/images/quark_chat_message.png) 
+![image](https://raw.githubusercontent.com/bandaokaola/bbs/master/resource/images/quark_chat_message.png) 
 
 ## 环境部署
 	导入resource文件夹下的sql文件
@@ -74,11 +74,11 @@
 	后台管理员：账号：lhr 密码：root
 
 ## 效果图
-![image](https://raw.githubusercontent.com/ChinaLHR/申国论坛/master/resource/images/quark_portal_1.JPG)  <br>
-![image](https://raw.githubusercontent.com/ChinaLHR/申国论坛/master/resource/images/quark_portal_4.JPG)  <br>
-![image](https://raw.githubusercontent.com/ChinaLHR/申国论坛/master/resource/images/quark_portal_5.JPG)  <br>
-![image](https://raw.githubusercontent.com/ChinaLHR/申国论坛/master/resource/images/quark_admin_1.JPG)  <br>
-![image](https://raw.githubusercontent.com/ChinaLHR/申国论坛/master/resource/images/quark_chat.JPG)  <br>
+![image](https://raw.githubusercontent.com/bandaokaola/bbs/master/resource/images/quark_portal_1.JPG)  <br>
+![image](https://raw.githubusercontent.com/bandaokaola/bbs/master/resource/images/quark_portal_4.JPG)  <br>
+![image](https://raw.githubusercontent.com/bandaokaola/bbs/master/resource/images/quark_portal_5.JPG)  <br>
+![image](https://raw.githubusercontent.com/bandaokaola/bbs/master/resource/images/quark_admin_1.JPG)  <br>
+![image](https://raw.githubusercontent.com/bandaokaola/bbs/master/resource/images/quark_chat.JPG)  <br>
 
 ## TODO
 - nginx配置图片服务器
